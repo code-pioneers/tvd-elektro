@@ -1,0 +1,72 @@
+---
+const navLinks = [
+  { href: '#welkom', label: 'Welkom' },
+  { href: '#firmavoorstelling', label: 'Wie zijn we' },
+  { href: '#portfolio', label: 'Portfolio' },
+  { href: '#activiteiten', label: 'Wat doen we' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<footer class="bg-gray-900 text-gray-300">
+  <div class="max-w-screen-xl mx-auto px-6 lg:px-12 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+      <!-- Logo + copyright -->
+      <div class="flex flex-col items-start gap-4">
+        <a href="#welkom">
+          <img
+            src="/assets/images/f22be46fdc58ac194dbf.png"
+            alt="TVD Elektro logo"
+            class="h-12 w-auto"
+            loading="lazy"
+          />
+        </a>
+        <p class="text-sm text-gray-500">
+          &copy; <span id="footer-year"></span> Alle rechten voorbehouden
+        </p>
+      </div>
+
+      <!-- Navigation links -->
+      <nav class="hidden md:flex flex-col gap-2">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="flex items-center gap-2 text-sm hover:text-primary transition-colors"
+            style="font-family: 'Poppins', sans-serif; font-weight: 600;"
+          >
+            <i class="fas fa-angle-right text-primary text-xs"></i>
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Contact details -->
+      <div class="flex flex-col gap-3 text-sm">
+        <div class="flex items-start gap-3">
+          <i class="fas fa-map-marker-alt text-primary mt-0.5 flex-shrink-0"></i>
+          <span>Borrekent 66, 9450 Denderhoutem</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <i class="fas fa-phone text-primary flex-shrink-0"></i>
+          <a href="tel:+32485963139" class="hover:text-primary transition-colors">0485 96 31 39</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <i class="fas fa-envelope text-primary flex-shrink-0"></i>
+          <a href="mailto:info@tvdelektro.be" class="hover:text-primary transition-colors">info@tvdelektro.be</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <i class="fas fa-receipt text-primary flex-shrink-0"></i>
+          <span>BTW BE 0556.757.432</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<script>
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+</script>
+

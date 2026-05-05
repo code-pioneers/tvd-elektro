@@ -1,0 +1,50 @@
+---
+const stats = [
+  { value: '10', label: 'Jaar ervaring' },
+  { value: '159+', label: 'Afgeleverde projecten' },
+  { value: '95%', label: 'Klanttevredenheid' },
+];
+---
+
+<div class="stats-section relative">
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <div class="relative z-10 section-padding">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-3 gap-4 text-center text-white">
+        {stats.map((stat) => (
+          <div>
+            <div class="point">{stat.value}</div>
+            <div class="p-fontsize font-semibold uppercase tracking-wider mt-1">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .stats-section {
+    background-image: url('/assets/images/741238d69214c3af022d.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  @media (min-width: 640px) {
+    .stats-section { background-image: url('/assets/images/920ecb8821d19f8e68b2.jpg'); }
+  }
+  @media (min-width: 768px) {
+    .stats-section { background-image: url('/assets/images/841134dd219f8c2815c7.jpg'); }
+  }
+  @media (min-width: 1024px) {
+    .stats-section { background-image: url('/assets/images/19a03ea08c99a57b5b50.jpg'); }
+  }
+  @media (min-width: 1280px) {
+    .stats-section { background-image: url('/assets/images/a62c3c16d6d1cc9ede2a.jpg'); }
+  }
+  @media (min-width: 1536px) {
+    .stats-section { background-image: url('/assets/images/e84cf6475af3f3b0bc64.jpg'); }
+  }
+</style>

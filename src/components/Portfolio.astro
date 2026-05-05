@@ -1,0 +1,221 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+interface Photo {
+  url: string;
+  album: string | null; // null = root level, only in "Alle foto's"
+}
+
+const portfolioDir = path.join(process.cwd(), 'public/assets/portfolio');
+const imageExts = /\.(jpg|jpeg|png|webp|gif|avif)$/i;
+
+const albums: string[] = [];
+const photos: Photo[] = [];
+
+try {
+  const entries = fs.readdirSync(portfolioDir, { withFileTypes: true });
+
+  // Subfolders → album tabs
+  for (const entry of entries.filter((e) => e.isDirectory())) {
+    const albumDir = path.join(portfolioDir, entry.name);
+    const files = fs.readdirSync(albumDir)
+      .filter((f) => imageExts.test(f))
+      .sort();
+
+    if (files.length > 0) {
+      albums.push(entry.name);
+      files.forEach((file) => {
+        photos.push({ url: `/assets/portfolio/${entry.name}/${file}`, album: entry.name });
+      });
+    }
+  }
+
+  // Root-level images → only in "Alle foto's"
+  const rootFiles = entries
+    .filter((e) => e.isFile() && imageExts.test(e.name))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  rootFiles.forEach((entry) => {
+    photos.push({ url: `/assets/portfolio/${entry.name}`, album: null });
+  });
+
+} catch {
+  // Portfolio directory doesn't exist or is empty — show empty state
+}
+---
+
+<section id="portfolio" class="section-padding bg-white">
+  <div class="max-w-screen-2xl mx-auto px-6 lg:px-12">
+
+    <h2 class="title">Realisaties.</h2>
+    <p class="subtitle margin">
+      Al onze werken getuigen van <strong>puur vakmanschap</strong>.
+    </p>
+
+    {photos.length > 0 ? (
+      <>
+        <!-- Filter buttons -->
+        <div class="flex flex-wrap gap-3 mb-8" id="album-filters">
+          <button class="portfolio-btn active" data-album="all">
+            Alle foto's
+          </button>
+          {albums.map((album) => (
+            <button class="portfolio-btn" data-album={album}>
+              {album}
+            </button>
+          ))}
+        </div>
+
+        <!-- Photo grid -->
+        <div class="picture-grid" id="photo-grid">
+          {photos.map((photo, index) => (
+            <img
+              src={photo.url}
+              alt={photo.album ?? 'Portfolio'}
+              loading="lazy"
+              decoding="async"
+              class="portfolio-photo"
+              data-album={photo.album ?? '__root__'}
+              data-index={index}
+            />
+          ))}
+        </div>
+      </>
+    ) : (
+      <p class="text-gray-400 text-center py-16">
+        Nog geen foto's beschikbaar. Voeg afbeeldingen toe aan <code>/public/assets/portfolio/</code>.
+      </p>
+    )}
+
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Foto lightbox">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Sluiten">
+    <i class="fal fa-times"></i>
+  </button>
+  <button class="lightbox-nav left" id="lightbox-prev" aria-label="Vorige foto">
+    <i class="fas fa-angle-left"></i>
+  </button>
+  <img id="lightbox-img" src="" alt="" />
+  <button class="lightbox-nav right" id="lightbox-next" aria-label="Volgende foto">
+    <i class="fas fa-angle-right"></i>
+  </button>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+  // All photo data is already in the DOM via data attributes
+  let currentAlbum = 'all';
+  let visiblePhotos: HTMLImageElement[] = [];
+
+  const allPhotos = Array.from(
+    document.querySelectorAll<HTMLImageElement>('.portfolio-photo')
+  );
+
+  function getVisiblePhotos(): HTMLImageElement[] {
+    return allPhotos.filter((img) => !img.classList.contains('hidden'));
+  }
+
+  function filterAlbum(album: string) {
+    currentAlbum = album;
+
+    allPhotos.forEach((img) => {
+      const imgAlbum = img.dataset.album!;
+      const visible = album === 'all' || imgAlbum === album;
+      img.classList.toggle('hidden', !visible);
+    });
+
+    visiblePhotos = getVisiblePhotos();
+  }
+
+  // Filter button clicks
+  document.getElementById('album-filters')?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.portfolio-btn');
+    if (!btn) return;
+
+    document.querySelectorAll<HTMLButtonElement>('.portfolio-btn').forEach((b) =>
+      b.classList.remove('active')
+    );
+    btn.classList.add('active');
+    filterAlbum(btn.dataset.album!);
+  });
+
+  // Initial visible photos
+  visiblePhotos = getVisiblePhotos();
+
+  // ===== Lightbox =====
+  const lightbox = document.getElementById('lightbox')!;
+  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lightboxCaption = document.getElementById('lightbox-caption')!;
+  let lightboxIndex = 0;
+
+  function openLightbox(clickedImg: HTMLImageElement) {
+    visiblePhotos = getVisiblePhotos();
+    lightboxIndex = visiblePhotos.indexOf(clickedImg);
+    showPhoto();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function showPhoto() {
+    const photo = visiblePhotos[lightboxIndex];
+    if (!photo) return;
+    lightboxImg.src = photo.src;
+    lightboxImg.alt = photo.alt;
+    const album = photo.dataset.album === '__root__' ? '' : photo.dataset.album!;
+    lightboxCaption.textContent = [album, `${lightboxIndex + 1} / ${visiblePhotos.length}`]
+      .filter(Boolean)
+      .join(' — ');
+  }
+
+  function prevPhoto() {
+    lightboxIndex = (lightboxIndex - 1 + visiblePhotos.length) % visiblePhotos.length;
+    showPhoto();
+  }
+
+  function nextPhoto() {
+    lightboxIndex = (lightboxIndex + 1) % visiblePhotos.length;
+    showPhoto();
+  }
+
+  document.getElementById('photo-grid')?.addEventListener('click', (e) => {
+    const img = (e.target as HTMLElement).closest<HTMLImageElement>('.portfolio-photo');
+    if (img) openLightbox(img);
+  });
+
+  document.getElementById('lightbox-close')?.addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-prev')?.addEventListener('click', prevPhoto);
+  document.getElementById('lightbox-next')?.addEventListener('click', nextPhoto);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') prevPhoto();
+    if (e.key === 'ArrowRight') nextPhoto();
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  lightbox.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextPhoto();
+      else prevPhoto();
+    }
+  }, { passive: true });
+</script>

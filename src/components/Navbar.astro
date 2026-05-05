@@ -1,0 +1,213 @@
+---
+const navLinks = [
+  { href: '#welkom', label: 'Welkom' },
+  { href: '#firmavoorstelling', label: 'Wie zijn we' },
+  { href: '#portfolio', label: 'Portfolio' },
+  { href: '#activiteiten', label: 'Wat doen we' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<!-- Mobile navbar (hidden on xl+) -->
+<header class="mobile-header xl:hidden">
+  <div class="flex items-center justify-between px-6 py-4">
+    <a href="#welkom">
+      <img
+        src="/assets/images/7445e10ae9fff2d65aaa.png"
+        alt="TVD Elektro logo"
+        class="h-10 w-auto"
+        loading="lazy"
+      />
+    </a>
+
+    <button
+      id="hamburger-btn"
+      class="hamburger-btn p-2 cursor-pointer bg-transparent border-none"
+      aria-label="Menu openen"
+      aria-expanded="false"
+    >
+      <span class="hamburger-icon"></span>
+    </button>
+  </div>
+
+  <nav class="mobile-menu" id="mobile-menu">
+    <ul class="flex flex-col border-t border-gray-100">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class="mobile-nav-link block px-6 py-4 text-gray-800 border-b border-gray-100"
+            style="font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;"
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li class="px-6 py-4 border-b border-gray-100">
+        <a
+          href="/assets/PRIVACYBELEID_tvdelektro.pdf"
+          target="_blank"
+          rel="noopener"
+          class="text-gray-500 text-xs uppercase"
+          style="font-family: 'Poppins', sans-serif; font-weight: 600; letter-spacing: 0.05em;"
+        >
+          Privacy policy
+        </a>
+      </li>
+      <li class="px-6 py-4">
+        <a
+          href="https://www.facebook.com/TVD-Elektro-1423778644559492/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+          class="text-gray-600 text-lg"
+        >
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Desktop navbar (hidden below xl) -->
+<nav class="navbar-desktop before-fold hidden xl:flex items-center" id="desktop-navbar">
+  <div class="max-w-screen-2xl mx-auto px-8 w-full flex items-center justify-between h-20">
+
+    <!-- Logo before fold (white) -->
+    <a href="#welkom" class="logo-before-fold">
+      <img
+        src="/assets/images/a5b16bf22e0759380bfa.png"
+        alt="TVD Elektro logo"
+        class="h-12 w-auto"
+      />
+    </a>
+    <!-- Logo after fold (color) -->
+    <a href="#welkom" class="logo-after-fold hidden">
+      <img
+        src="/assets/images/7445e10ae9fff2d65aaa.png"
+        alt="TVD Elektro logo"
+        class="h-12 w-auto"
+      />
+    </a>
+
+    <!-- Center nav links -->
+    <ul class="flex items-center gap-8">
+      {navLinks.map((link) => (
+        <li>
+          <a href={link.href} class="nav-link">{link.label}</a>
+        </li>
+      ))}
+
+      <!-- Documenten dropdown -->
+      <li class="relative parentmenu">
+        <button class="nav-link flex items-center gap-1 bg-transparent border-none cursor-pointer p-0">
+          Documenten
+          <i class="fas fa-angle-right rotate text-xs"></i>
+        </button>
+        <div class="submenu">
+          <a
+            href="/assets/PRIVACYBELEID_tvdelektro.pdf"
+            target="_blank"
+            rel="noopener"
+            class="block px-4 py-2 text-gray-700 hover:text-primary"
+            style="font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;"
+          >
+            Privacy policy
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Right: Facebook -->
+    <a
+      href="https://www.facebook.com/TVD-Elektro-1423778644559492/"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Facebook"
+      class="nav-social text-lg"
+    >
+      <i class="fab fa-facebook-f"></i>
+    </a>
+  </div>
+</nav>
+
+<script>
+  // ===== Mobile hamburger (JS-driven) =====
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburgerBtn?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('open');
+    hamburgerBtn.classList.toggle('is-open', isOpen);
+    hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close menu on nav link click
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.remove('open');
+      hamburgerBtn?.classList.remove('is-open');
+      hamburgerBtn?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ===== Desktop navbar scroll-aware =====
+  const navbar = document.getElementById('desktop-navbar');
+  const logoBeforeFold = navbar?.querySelector('.logo-before-fold') as HTMLElement | null;
+  const logoAfterFold = navbar?.querySelector('.logo-after-fold') as HTMLElement | null;
+
+  function updateNavbar() {
+    if (!navbar) return;
+    const threshold = window.innerHeight * 0.9;
+    const scrolled = window.pageYOffset > threshold;
+
+    navbar.classList.toggle('before-fold', !scrolled);
+    navbar.classList.toggle('after-fold', scrolled);
+
+    if (logoBeforeFold) logoBeforeFold.style.display = scrolled ? 'none' : '';
+    if (logoAfterFold) logoAfterFold.style.display = scrolled ? '' : 'none';
+  }
+
+  window.addEventListener('scroll', updateNavbar, { passive: true });
+  updateNavbar();
+</script>
+
+<style>
+  /* Hamburger icon animation via JS class */
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .hamburger-icon {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background: #131313;
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .hamburger-icon::before,
+  .hamburger-icon::after {
+    content: '';
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background: #131313;
+    position: absolute;
+    transition: transform 0.25s ease;
+  }
+
+  .hamburger-icon::before { top: -6px; }
+  .hamburger-icon::after  { top: 6px; }
+
+  .hamburger-btn.is-open .hamburger-icon { background: transparent; }
+  .hamburger-btn.is-open .hamburger-icon::before { transform: rotate(45deg) translate(0, 6px); }
+  .hamburger-btn.is-open .hamburger-icon::after  { transform: rotate(-45deg) translate(0, -6px); }
+</style>

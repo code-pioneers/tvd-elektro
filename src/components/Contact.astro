@@ -1,0 +1,278 @@
+---
+---
+
+<section id="contact" class="contact-section relative">
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <div class="relative z-10 section-padding">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+      <div class="column2 items-start gap-12">
+
+        <!-- Left: contact info -->
+        <div class="text-white">
+          <h2 class="title">Laten we uw project bespreken.</h2>
+          <p class="p-fontsize mb-8">
+            Wij geven u graag informatie op maat. Vul het contactformulier in of neem
+            contact op via één van de onderstaande gegevens.
+          </p>
+
+          <h3
+            class="uppercase font-semibold text-sm mb-4 tracking-wider"
+            style="font-family: 'Poppins', sans-serif;"
+          >
+            Contactgegevens
+          </h3>
+
+          <ul class="space-y-3 p-fontsize">
+            <li class="flex items-start gap-3">
+              <i class="fas fa-map-marker-alt mt-1 text-primary flex-shrink-0"></i>
+              <span>Borrekent 66, 9450 Denderhoutem</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fas fa-phone text-primary flex-shrink-0"></i>
+              <a href="tel:+32485963139" class="hover:text-primary transition-colors">0485 96 31 39</a>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fas fa-envelope text-primary flex-shrink-0"></i>
+              <a href="mailto:info@tvdelektro.be" class="hover:text-primary transition-colors">info@tvdelektro.be</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right: contact form -->
+        <div class="bg-white rounded p-8 w-full shadow-xl">
+          <form id="contact-form" novalidate>
+
+            <label class="inputbox">
+              Naam <span class="text-primary">*</span>
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="Uw naam"
+                data-validation-regex="^[a-zA-ZàáâäãåąćčèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČÈÉÊËĖĮÌÍÎÏŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ\s]+$"
+                data-validation-message="Gelieve een geldige naam in te geven."
+              />
+            </label>
+
+            <label class="inputbox">
+              Telefoonnummer <span class="text-primary">*</span>
+              <input
+                type="tel"
+                name="phone"
+                required
+                placeholder="Uw telefoonnummer"
+                data-validation-regex="^[0-9+\s]{9,}$"
+                data-validation-message="Gelieve een geldig telefoonnummer in te geven."
+              />
+            </label>
+
+            <label class="inputbox">
+              E-mail <span class="text-primary">*</span>
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Uw e-mailadres"
+                data-validation-regex="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                data-validation-message="Gelieve een geldig e-mailadres in te geven."
+              />
+            </label>
+
+            <label class="inputbox">
+              Onderwerp <span class="text-primary">*</span>
+              <input
+                type="text"
+                name="subject"
+                required
+                placeholder="Onderwerp"
+              />
+            </label>
+
+            <label class="inputbox">
+              Uw bericht <span class="text-primary">*</span>
+              <textarea
+                name="message"
+                rows="7"
+                required
+                placeholder="Beschrijf uw project of vraag..."
+              ></textarea>
+            </label>
+
+            <label class="inputbox">
+              Plaats van de werken
+              <input
+                type="text"
+                name="location"
+                placeholder="Gemeente of postcode"
+              />
+            </label>
+
+            <!-- hCaptcha -->
+            <div class="mb-4">
+              <div
+                class="h-captcha"
+                data-sitekey="4781f3d8-4a2c-46ca-9a0f-77ad97b6f74e"
+              ></div>
+            </div>
+
+            <!-- Validation error -->
+            <div id="form-error" class="hidden text-red-600 text-sm mb-4 font-semibold"></div>
+
+            <!-- Submit button -->
+            <button
+              type="submit"
+              id="submit-btn"
+              class="w-full bg-primary text-white font-semibold py-3 px-6 uppercase tracking-wide hover:bg-red-700 transition-colors rounded-sm disabled:opacity-60"
+              style="font-family: 'Poppins', sans-serif; font-size: 0.875rem;"
+            >
+              Verzenden
+            </button>
+
+            <!-- Status messages -->
+            <div id="form-sending" class="hidden text-center py-3 text-gray-500">
+              <i class="fas fa-circle-notch fa-spin text-primary"></i>
+              <span class="ml-2">Bezig met verzenden...</span>
+            </div>
+            <div id="form-success" class="hidden text-center py-3 text-green-600 font-semibold">
+              <i class="fas fa-check-circle"></i>
+              <span class="ml-2">Bericht succesvol verzonden. We nemen zo snel mogelijk contact op.</span>
+            </div>
+            <div id="form-error-msg" class="hidden text-center py-3 text-orange-500 font-semibold">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span class="ml-2">Er ging iets mis. Probeer opnieuw of stuur een e-mail naar info@tvdelektro.be</span>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- hCaptcha script -->
+<script
+  is:inline
+  src="https://js.hcaptcha.com/1/api.js"
+  async
+  defer
+></script>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const formError = document.getElementById('form-error')!;
+  const formSending = document.getElementById('form-sending')!;
+  const formSuccess = document.getElementById('form-success')!;
+  const formErrorMsg = document.getElementById('form-error-msg')!;
+
+  function showStatus(el: HTMLElement) {
+    [formSending, formSuccess, formErrorMsg].forEach((e) => e.classList.add('hidden'));
+    el.classList.remove('hidden');
+  }
+
+  function validateField(input: HTMLInputElement | HTMLTextAreaElement): boolean {
+    const regex = (input as HTMLInputElement).dataset.validationRegex;
+    const msg = (input as HTMLInputElement).dataset.validationMessage;
+
+    if (input.required && !input.value.trim()) {
+      formError.textContent = msg || 'Dit veld is verplicht.';
+      formError.classList.remove('hidden');
+      input.focus();
+      return false;
+    }
+
+    if (regex && input.value.trim() && !new RegExp(regex, 'i').test(input.value.trim())) {
+      formError.textContent = msg || 'Ongeldige invoer.';
+      formError.classList.remove('hidden');
+      input.focus();
+      return false;
+    }
+
+    return true;
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formError.classList.add('hidden');
+
+    // Validate all required fields
+    const fields = form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required]');
+    for (const field of fields) {
+      if (!validateField(field)) return;
+    }
+
+    // Get hCaptcha token
+    const captchaResponse = (document.querySelector('[name="h-captcha-response"]') as HTMLInputElement)?.value;
+    if (!captchaResponse) {
+      formError.textContent = 'Gelieve de captcha te voltooien.';
+      formError.classList.remove('hidden');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    showStatus(formSending);
+
+    const data = {
+      CustomerEmail: 'info@tvdelektro.be',
+      name: (form.querySelector('[name="name"]') as HTMLInputElement).value,
+      phone: (form.querySelector('[name="phone"]') as HTMLInputElement).value,
+      email: (form.querySelector('[name="email"]') as HTMLInputElement).value,
+      subject: (form.querySelector('[name="subject"]') as HTMLInputElement).value,
+      message: (form.querySelector('[name="message"]') as HTMLTextAreaElement).value,
+      location: (form.querySelector('[name="location"]') as HTMLInputElement).value,
+      captcha: captchaResponse,
+    };
+
+    try {
+      const res = await fetch('https://messages.qcdn.be/message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        showStatus(formSuccess);
+        form.reset();
+        // Reset hCaptcha
+        if (typeof (window as any).hcaptcha !== 'undefined') {
+          (window as any).hcaptcha.reset();
+        }
+      } else {
+        showStatus(formErrorMsg);
+      }
+    } catch {
+      showStatus(formErrorMsg);
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  .contact-section {
+    background-image: url('/assets/images/00097ab4d3860f4cf705.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  @media (min-width: 640px) {
+    .contact-section { background-image: url('/assets/images/88b76ab22e8f6d900ea6.jpg'); }
+  }
+  @media (min-width: 768px) {
+    .contact-section { background-image: url('/assets/images/a527dd928a137329b29c.jpg'); }
+  }
+  @media (min-width: 1024px) {
+    .contact-section { background-image: url('/assets/images/b4cf95adedd624684799.jpg'); }
+  }
+  @media (min-width: 1280px) {
+    .contact-section { background-image: url('/assets/images/22ac4c41d0857f665754.jpg'); }
+  }
+  @media (min-width: 1536px) {
+    .contact-section { background-image: url('/assets/images/58402b0c687480d9003d.jpg'); }
+  }
+
+
+</style>

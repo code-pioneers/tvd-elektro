@@ -1,0 +1,428 @@
+---
+const services = [
+  {
+    id: 0,
+    title: 'Elektriciteitswerken',
+    shortDesc: 'Elektrische installaties vakkundig en correct uitgevoerd voor nieuwbouw, renovaties en bestaande installaties.',
+    modalTitle: 'Elektrische installaties met kennis geïnstalleerd',
+    image: '/assets/images/f94904eab77cfe2fa0e4.jpg',
+    content: {
+      type: 'checklist',
+      items: [
+        'Nieuwbouw',
+        'Renovaties',
+        'Bestaande installaties',
+        'Keuringen',
+        "Schema's opmaken",
+      ],
+    },
+  },
+  {
+    id: 1,
+    title: 'Verlichting',
+    shortDesc: 'Creëer de juiste sfeer met binnen- en buitenverlichting. Wij adviseren, leveren en installeren.',
+    modalTitle: 'Creëer de juiste sfeer met binnen- en buitenverlichting',
+    image: '/assets/images/033b7027113ff6e1a188.jpg',
+    content: {
+      type: 'checklist',
+      items: [
+        'Opmaken van een lichtplan',
+        'Leveren en installeren',
+        'In- en opbouw in muur of plafond',
+      ],
+      extra: '<p class="p-fontsize mt-4">Werken met topmerken zoals <strong>SLV Belgium</strong>, <strong>PSM Lightning</strong> en <strong>Deltalight</strong>.</p>',
+    },
+  },
+  {
+    id: 2,
+    title: 'Domotica',
+    shortDesc: 'Met domotica kunt u uw woning intelligent maken. Bediening van verlichting, schermen en poorten via één systeem.',
+    modalTitle: 'Met domotica kan u uw woning intelligent maken',
+    image: '/assets/images/363f47c4f089994286cd.jpg',
+    content: {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Comfort',
+          image: '/assets/images/363f47c4f089994286cd.jpg',
+          text: 'Via het <strong>IPBuilding</strong> systeem kunt u uw woning vanop afstand bedienen via een app op uw smartphone of tablet. Schermen, verlichting en schuifpoorten zijn op elk moment en vanuit elke locatie te bedienen.',
+        },
+        {
+          label: 'Sferen',
+          image: '/assets/images/090642e1a22cdb6c7a53.jpg',
+          text: 'Stel vooraf scènes in voor uw woning: <strong>welkom</strong>, <strong>tv-kijken</strong>, <strong>slapengaan</strong>, <strong>lezen</strong> of <strong>alles uit</strong>. Met één druk op de knop past de volledige woning zich aan.',
+        },
+        {
+          label: 'Energie',
+          image: '/assets/images/851385d94d1cb531eb87.jpg',
+          text: 'Via een touchscreen volgt u uw energieverbruik op per dag, maand en jaar. Gas, water en elektriciteit worden afzonderlijk weergegeven zodat u steeds een duidelijk overzicht heeft.',
+        },
+        {
+          label: 'Audio',
+          image: '/assets/images/6116212860f0ebe6b499.jpg',
+          text: 'Geïntegreerde audio doorheen uw woning. Beluister uw favoriete playlist of radio zelfs in de badkamer. Bediening via touchscreen, wandknoppen of tablet.',
+        },
+      ],
+    },
+  },
+  {
+    id: 3,
+    title: 'Ventilatie',
+    shortDesc: 'Een ventilatiesysteem zorgt voor een gezond en comfortabel binnenklimaat. Wij installeren en onderhouden alle systemen.',
+    modalTitle: 'Een ventilatiesysteem is gezond en comfortabel',
+    image: '/assets/images/a79e8ff45f92bff452c6.jpg',
+    content: {
+      type: 'checklist',
+      items: [
+        'Vakkundig advies',
+        'Installatie van Systeem C, C+, D en E+',
+        'Afleveren van de nodige attesten',
+        'Onderhoud en service op uw systeem',
+      ],
+    },
+  },
+  {
+    id: 4,
+    title: 'Zonnepanelen',
+    shortDesc: 'Zonnepanelen zijn niet meer weg te denken. Investeer in duurzame energie met een professionele installatie.',
+    modalTitle: 'Zonnepanelen zijn niet meer weg te denken',
+    image: '/assets/images/b6e2394d995203b9ceb7.jpg',
+    content: {
+      type: 'text',
+      text: 'Een omvormer (inverter) zet de gelijkstroom van de zonnepanelen om naar wisselstroom die u in uw woning kunt gebruiken. <strong>TVD Elektro</strong> begeleidt u van A tot Z: van advies en plaatsing tot aansluiting en inbedrijfstelling.',
+    },
+  },
+  {
+    id: 5,
+    title: 'Audio',
+    shortDesc: 'Installeren van audio zonder zichtbare bekabeling, bediend via een wandpaneel of smartapparaat.',
+    modalTitle: 'Installeren van audio',
+    image: '/assets/images/fe353e079c1be998a703.jpg',
+    content: {
+      type: 'text',
+      text: 'Audio-installaties zonder zichtbare bekabeling, netjes weggewerkt in muren en plafonds. Bediening via wandpanelen, touchscreen of uw eigen smartphone. Ideaal te combineren met het domoticasysteem.',
+    },
+  },
+  {
+    id: 6,
+    title: 'Beveiliging',
+    shortDesc: 'Beveiliging van uw woning of bedrijfspand. Toegangscontrole, camerabewaking, inbraakbeveiliging en videofonie.',
+    modalTitle: 'Beveiliging van uw woning of bedrijfspand',
+    image: '/assets/images/e64d24c81b7ece6bff56.jpg',
+    content: {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Toegangscontrole',
+          image: '/assets/images/e64d24c81b7ece6bff56.jpg',
+          text: 'Badgelezers, kaartlezers, codeklavieren en vingerafdrukscanning voor toegang tot uw pand. Combineer met alarm, parlofonie of camerabewaking voor een volledig beveiligingssysteem. Bediening op afstand via smartphone.',
+        },
+        {
+          label: 'Camerabewaking',
+          image: '/assets/images/df54711acee3a969119a.jpg',
+          text: 'Dag- en nachtzicht camera\'s voor binnen en buiten. Volg uw beelden live op uw smartphone of computer, vanuit elke locatie ter wereld.',
+        },
+        {
+          label: 'Inbraakbeveiliging',
+          image: '/assets/images/ceefb54b70c17933e02d.jpg',
+          text: 'Professioneel alarmsysteem gekoppeld aan uw smartphone. Ontvang een melding bij inbraak of brandalarm. Combineer met toegangscontrole voor maximale bescherming.',
+        },
+        {
+          label: 'Parlo- en videofonie',
+          image: '/assets/images/af4e5caa1febcae64a7d.jpg',
+          text: 'Open uw voor- of poort op afstand via uw smartphone. Zowel voor particuliere woningen als appartementsgebouwen met meerdere units.',
+        },
+      ],
+    },
+  },
+];
+---
+
+<section id="activiteiten" class="section-padding bg-gray-50">
+  <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+
+    <!-- Desktop layout (lg+) -->
+    <div class="hidden lg:grid lg:grid-cols-4 gap-8">
+
+      <!-- Left: title block -->
+      <div class="lg:col-span-2 flex flex-col justify-center">
+        <h2 class="title">Wat doen we</h2>
+        <p class="subtitle">
+          Ontdek al onze <strong>diensten</strong> en wat wij voor u kunnen betekenen.
+        </p>
+      </div>
+
+      <!-- Right: service cards (2 cols) -->
+      <div class="lg:col-span-2 grid grid-cols-2 gap-4">
+        {services.map((service) => (
+          <div class="bg-white p-5 rounded shadow-sm hover:shadow-md transition-shadow">
+            <div class="flex items-start gap-3 mb-2">
+              <i class="fad fa-check text-primary text-xl mt-0.5 flex-shrink-0"></i>
+              <button
+                class="font-bold text-left text-gray-900 hover:text-primary transition-colors text-base leading-snug cursor-pointer bg-transparent border-none p-0 open-modal"
+                data-modal={service.id}
+              >
+                {service.title}
+              </button>
+            </div>
+            <p class="text-gray-600 text-sm line-clamp-3 mb-3 pl-7">{service.shortDesc}</p>
+            <button
+              class="text-primary text-sm font-semibold hover:underline pl-7 bg-transparent border-none cursor-pointer p-0 open-modal"
+              data-modal={service.id}
+            >
+              meer info
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Mobile layout (< lg) -->
+    <div class="lg:hidden">
+      <h2 class="title">Wat doen we</h2>
+      <p class="subtitle margin">
+        Ontdek al onze <strong>diensten</strong> en wat wij voor u kunnen betekenen.
+      </p>
+
+      <!-- Mobile tab buttons -->
+      <div class="flex flex-wrap gap-2 mb-6">
+        {services.map((service) => (
+          <button
+            class="mobile-service-btn border border-primary text-primary px-4 py-2 text-xs font-semibold uppercase tracking-wide rounded transition-colors"
+            style="font-family: 'Poppins', sans-serif;"
+            data-target={`mobile-panel-${service.id}`}
+          >
+            {service.title}
+          </button>
+        ))}
+      </div>
+
+      <!-- Mobile panels -->
+      {services.map((service) => (
+        <div id={`mobile-panel-${service.id}`} class="service-mobile-content mb-6 bg-white rounded shadow-sm p-6">
+          <h3 class="font-bold text-xl mb-4" style="font-family: 'Poppins', sans-serif;">{service.modalTitle}</h3>
+
+          {service.content.type === 'checklist' && (
+            <ul class="space-y-2 p-fontsize">
+              {service.content.items?.map((item) => (
+                <li class="flex items-center gap-3">
+                  <i class="fad fa-check text-primary flex-shrink-0"></i>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {service.content.type === 'text' && (
+            <p class="p-fontsize" set:html={service.content.text} />
+          )}
+
+          {service.content.type === 'tabs' && (
+            <div class="mobile-tabs" data-group={`mobile-tabs-${service.id}`}>
+              <div class="flex flex-wrap gap-1 border-b border-gray-200 mb-4">
+                {service.content.tabs?.map((tab, idx) => (
+                  <button
+                    class={`sub-tab-btn mobile-sub-tab ${idx === 0 ? 'active' : ''}`}
+                    data-group={`mobile-tabs-${service.id}`}
+                    data-tab={`mobile-tab-${service.id}-${idx}`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+              {service.content.tabs?.map((tab, idx) => (
+                <div
+                  id={`mobile-tab-${service.id}-${idx}`}
+                  class={`sub-tab-panel ${idx === 0 ? 'active' : ''}`}
+                >
+                  <p class="p-fontsize" set:html={tab.text} />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {service.content.type === 'checklist' && service.content.extra && (
+            <div set:html={service.content.extra} />
+          )}
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<!-- Desktop Modals -->
+{services.map((service) => (
+  <div
+    id={`modal-${service.id}`}
+    class="service-modal-overlay"
+    data-modal-id={service.id}
+  >
+    <div class="service-modal">
+      <button class="modal-close" data-close={service.id} aria-label="Sluiten">
+        <i class="fal fa-times"></i>
+      </button>
+
+      <div class="lg:grid lg:grid-cols-2">
+        <!-- Image -->
+        <div class="hidden lg:block">
+          <img
+            src={service.image}
+            alt={service.title}
+            class="w-full h-full object-cover"
+            style="max-height: 500px;"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Content -->
+        <div class="p-8 lg:p-10 overflow-y-auto" style="max-height: 90vh;">
+          <h3 class="font-bold text-xl lg:text-2xl mb-6" style="font-family: 'Poppins', sans-serif;">
+            {service.modalTitle}
+          </h3>
+
+          {service.content.type === 'checklist' && (
+            <ul class="space-y-3 p-fontsize">
+              {service.content.items?.map((item) => (
+                <li class="flex items-center gap-3">
+                  <i class="fad fa-check text-primary flex-shrink-0"></i>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {service.content.type === 'text' && (
+            <p class="p-fontsize" set:html={service.content.text} />
+          )}
+
+          {service.content.type === 'tabs' && (
+            <div>
+              <div class="flex flex-wrap gap-1 border-b border-gray-200 mb-6">
+                {service.content.tabs?.map((tab, idx) => (
+                  <button
+                    class={`sub-tab-btn desktop-sub-tab ${idx === 0 ? 'active' : ''}`}
+                    data-group={`desktop-tabs-${service.id}`}
+                    data-tab={`desktop-tab-${service.id}-${idx}`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+              {service.content.tabs?.map((tab, idx) => (
+                <div
+                  id={`desktop-tab-${service.id}-${idx}`}
+                  class={`sub-tab-panel ${idx === 0 ? 'active' : ''}`}
+                >
+                  <p class="p-fontsize" set:html={tab.text} />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {service.content.type === 'checklist' && service.content.extra && (
+            <div set:html={service.content.extra} />
+          )}
+
+          <div class="mt-8">
+            <a
+              href="#contact"
+              class="inline-block bg-primary text-white px-6 py-3 font-semibold text-sm uppercase tracking-wide hover:bg-red-700 transition-colors rounded-sm"
+              style="font-family: 'Poppins', sans-serif;"
+            >
+              Neem contact op
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+))}
+
+<script>
+  // ===== Desktop modal open/close =====
+  document.querySelectorAll<HTMLButtonElement>('.open-modal').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.modal;
+      const overlay = document.getElementById(`modal-${id}`);
+      overlay?.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>('.modal-close').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.close;
+      const overlay = document.getElementById(`modal-${id}`);
+      overlay?.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Close modal on overlay click
+  document.querySelectorAll<HTMLElement>('.service-modal-overlay').forEach((overlay) => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.service-modal-overlay.open').forEach((overlay) => {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+
+  // ===== Mobile service panels =====
+  document.querySelectorAll<HTMLButtonElement>('.mobile-service-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target!;
+      const panel = document.getElementById(targetId);
+      const isOpen = panel?.classList.contains('open');
+
+      // Close all panels
+      document.querySelectorAll('.service-mobile-content').forEach((p) => p.classList.remove('open'));
+      document.querySelectorAll('.mobile-service-btn').forEach((b) => {
+        b.classList.remove('bg-primary', 'text-white');
+        b.classList.add('text-primary');
+      });
+
+      if (!isOpen) {
+        panel?.classList.add('open');
+        btn.classList.add('bg-primary', 'text-white');
+        btn.classList.remove('text-primary');
+        panel?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  });
+
+  // ===== Sub-tabs (mobile + desktop) =====
+  document.querySelectorAll<HTMLButtonElement>('.sub-tab-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const group = btn.dataset.group!;
+      const tabId = btn.dataset.tab!;
+
+      // Deactivate all tabs in this group
+      document.querySelectorAll<HTMLButtonElement>(`[data-group="${group}"]`).forEach((b) => {
+        b.classList.remove('active');
+      });
+
+      // Deactivate all panels for this group
+      const prefix = tabId.replace(/-\d+$/, '');
+      document.querySelectorAll<HTMLElement>(`[id^="${prefix}"]`).forEach((panel) => {
+        if (panel.classList.contains('sub-tab-panel')) {
+          panel.classList.remove('active');
+        }
+      });
+
+      btn.classList.add('active');
+      document.getElementById(tabId)?.classList.add('active');
+    });
+  });
+</script>
