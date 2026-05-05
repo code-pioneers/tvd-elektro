@@ -1,4 +1,5 @@
 ---
+const base = import.meta.env.BASE_URL;
 const navLinks = [
   { href: '#welkom', label: 'Welkom' },
   { href: '#firmavoorstelling', label: 'Wie zijn we' },
@@ -13,7 +14,7 @@ const navLinks = [
   <div class="flex items-center justify-between px-6 py-4">
     <a href="#welkom">
       <img
-        src="/assets/images/7445e10ae9fff2d65aaa.png"
+        src={`${base}assets/images/7445e10ae9fff2d65aaa.png`}
         alt="TVD Elektro logo"
         class="h-10 w-auto"
         loading="lazy"
@@ -45,7 +46,7 @@ const navLinks = [
       ))}
       <li class="px-6 py-4 border-b border-gray-100">
         <a
-          href="/assets/PRIVACYBELEID_tvdelektro.pdf"
+          href={`${base}assets/PRIVACYBELEID_tvdelektro.pdf`}
           target="_blank"
           rel="noopener"
           class="text-gray-500 text-xs uppercase"
@@ -76,7 +77,7 @@ const navLinks = [
     <!-- Logo before fold (white) -->
     <a href="#welkom" class="logo-before-fold">
       <img
-        src="/assets/images/a5b16bf22e0759380bfa.png"
+        src={`${base}assets/images/a5b16bf22e0759380bfa.png`}
         alt="TVD Elektro logo"
         class="h-12 w-auto"
       />
@@ -84,7 +85,7 @@ const navLinks = [
     <!-- Logo after fold (color) -->
     <a href="#welkom" class="logo-after-fold hidden">
       <img
-        src="/assets/images/7445e10ae9fff2d65aaa.png"
+        src={`${base}assets/images/7445e10ae9fff2d65aaa.png`}
         alt="TVD Elektro logo"
         class="h-12 w-auto"
       />
@@ -106,7 +107,7 @@ const navLinks = [
         </button>
         <div class="submenu">
           <a
-            href="/assets/PRIVACYBELEID_tvdelektro.pdf"
+            href={`${base}assets/PRIVACYBELEID_tvdelektro.pdf`}
             target="_blank"
             rel="noopener"
             class="block px-4 py-2 text-gray-700 hover:text-primary"

@@ -1,6 +1,7 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
+const base = import.meta.env.BASE_URL;
 
 interface Photo {
   url: string;
@@ -26,7 +27,7 @@ try {
     if (files.length > 0) {
       albums.push(entry.name);
       files.forEach((file) => {
-        photos.push({ url: `/assets/portfolio/${entry.name}/${file}`, album: entry.name });
+        photos.push({ url: `${base}assets/portfolio/${entry.name}/${file}`, album: entry.name });
       });
     }
   }
@@ -37,7 +38,7 @@ try {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   rootFiles.forEach((entry) => {
-    photos.push({ url: `/assets/portfolio/${entry.name}`, album: null });
+    photos.push({ url: `${base}assets/portfolio/${entry.name}`, album: null });
   });
 
 } catch {

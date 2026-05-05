@@ -1,4 +1,6 @@
 ---
+const base = import.meta.env.BASE_URL;
+
 const stats = [
   { value: '10', label: 'Jaar ervaring' },
   { value: '159+', label: 'Afgeleverde projecten' },
@@ -24,27 +26,27 @@ const stats = [
   </div>
 </div>
 
-<style>
+<Fragment set:html={`<style>
   .stats-section {
-    background-image: url('/assets/images/741238d69214c3af022d.jpg');
+    background-image: url('${base}assets/images/741238d69214c3af022d.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
   }
   @media (min-width: 640px) {
-    .stats-section { background-image: url('/assets/images/920ecb8821d19f8e68b2.jpg'); }
+    .stats-section { background-image: url('${base}assets/images/920ecb8821d19f8e68b2.jpg'); }
   }
   @media (min-width: 768px) {
-    .stats-section { background-image: url('/assets/images/841134dd219f8c2815c7.jpg'); }
+    .stats-section { background-image: url('${base}assets/images/841134dd219f8c2815c7.jpg'); }
   }
   @media (min-width: 1024px) {
-    .stats-section { background-image: url('/assets/images/19a03ea08c99a57b5b50.jpg'); }
+    .stats-section { background-image: url('${base}assets/images/19a03ea08c99a57b5b50.jpg'); }
   }
   @media (min-width: 1280px) {
-    .stats-section { background-image: url('/assets/images/a62c3c16d6d1cc9ede2a.jpg'); }
+    .stats-section { background-image: url('${base}assets/images/a62c3c16d6d1cc9ede2a.jpg'); }
   }
   @media (min-width: 1536px) {
-    .stats-section { background-image: url('/assets/images/e84cf6475af3f3b0bc64.jpg'); }
+    .stats-section { background-image: url('${base}assets/images/e84cf6475af3f3b0bc64.jpg'); }
   }
-</style>
+</style>`} />

@@ -1,4 +1,5 @@
 ---
+const base = import.meta.env.BASE_URL;
 const navLinks = [
   { href: '#welkom', label: 'Welkom' },
   { href: '#firmavoorstelling', label: 'Wie zijn we' },
@@ -16,7 +17,7 @@ const navLinks = [
       <div class="flex flex-col items-start gap-4">
         <a href="#welkom">
           <img
-            src="/assets/images/f22be46fdc58ac194dbf.png"
+            src={`${base}assets/images/f22be46fdc58ac194dbf.png`}
             alt="TVD Elektro logo"
             class="h-12 w-auto"
             loading="lazy"

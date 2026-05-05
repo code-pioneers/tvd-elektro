@@ -1,4 +1,5 @@
 ---
+const base = import.meta.env.BASE_URL;
 ---
 
 <section id="contact" class="contact-section relative">
@@ -251,28 +252,26 @@
   });
 </script>
 
-<style>
+<Fragment set:html={`<style>
   .contact-section {
-    background-image: url('/assets/images/00097ab4d3860f4cf705.jpg');
+    background-image: url('${base}assets/images/00097ab4d3860f4cf705.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }
   @media (min-width: 640px) {
-    .contact-section { background-image: url('/assets/images/88b76ab22e8f6d900ea6.jpg'); }
+    .contact-section { background-image: url('${base}assets/images/88b76ab22e8f6d900ea6.jpg'); }
   }
   @media (min-width: 768px) {
-    .contact-section { background-image: url('/assets/images/a527dd928a137329b29c.jpg'); }
+    .contact-section { background-image: url('${base}assets/images/a527dd928a137329b29c.jpg'); }
   }
   @media (min-width: 1024px) {
-    .contact-section { background-image: url('/assets/images/b4cf95adedd624684799.jpg'); }
+    .contact-section { background-image: url('${base}assets/images/b4cf95adedd624684799.jpg'); }
   }
   @media (min-width: 1280px) {
-    .contact-section { background-image: url('/assets/images/22ac4c41d0857f665754.jpg'); }
+    .contact-section { background-image: url('${base}assets/images/22ac4c41d0857f665754.jpg'); }
   }
   @media (min-width: 1536px) {
-    .contact-section { background-image: url('/assets/images/58402b0c687480d9003d.jpg'); }
+    .contact-section { background-image: url('${base}assets/images/58402b0c687480d9003d.jpg'); }
   }
-
-
-</style>
+</style>`} />
