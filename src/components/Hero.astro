@@ -1,5 +1,4 @@
 ---
-const base = import.meta.env.BASE_URL;
 ---
 
 <section id="welkom" class="hero-section relative flex items-center justify-center h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-screen">
@@ -17,26 +16,26 @@ const base = import.meta.env.BASE_URL;
   </div>
 </section>
 
-<Fragment set:html={`<style>
+<style>
   .hero-section {
-    background-image: url('${base}assets/images/7320fd8b645b0c45550f.jpg');
+    background-image: url('/assets/images/7320fd8b645b0c45550f.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }
   @media (min-width: 640px) {
-    .hero-section { background-image: url('${base}assets/images/a4e65d81f431220daccf.jpg'); }
+    .hero-section { background-image: url('/assets/images/a4e65d81f431220daccf.jpg'); }
   }
   @media (min-width: 768px) {
-    .hero-section { background-image: url('${base}assets/images/90c3f8472ba5f9564482.jpg'); }
+    .hero-section { background-image: url('/assets/images/90c3f8472ba5f9564482.jpg'); }
   }
   @media (min-width: 1024px) {
-    .hero-section { background-image: url('${base}assets/images/6a4bd251699652920cfd.jpg'); }
+    .hero-section { background-image: url('/assets/images/6a4bd251699652920cfd.jpg'); }
   }
   @media (min-width: 1280px) {
-    .hero-section { background-image: url('${base}assets/images/a46b0e1896535a70d8b5.jpg'); }
+    .hero-section { background-image: url('/assets/images/a46b0e1896535a70d8b5.jpg'); }
   }
   @media (min-width: 1536px) {
-    .hero-section { background-image: url('${base}assets/images/76beb3419b2a3138e452.jpg'); }
+    .hero-section { background-image: url('/assets/images/76beb3419b2a3138e452.jpg'); }
   }
-</style>`} />
+</style>
