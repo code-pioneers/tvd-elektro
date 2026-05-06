@@ -7,6 +7,7 @@ interface Photo {
   album: string | null; // null = root level, only in "Alle foto's"
 }
 
+const base = import.meta.env.BASE_URL;
 const portfolioDir = path.join(process.cwd(), 'public/assets/portfolio');
 const imageExts = /\.(jpg|jpeg|png|webp|gif|avif)$/i;
 
@@ -26,7 +27,7 @@ try {
     if (files.length > 0) {
       albums.push(entry.name);
       files.forEach((file) => {
-        photos.push({ url: `/assets/portfolio/${entry.name}/${file}`, album: entry.name });
+        photos.push({ url: `${base}assets/portfolio/${entry.name}/${file}`, album: entry.name });
       });
     }
   }
@@ -37,7 +38,7 @@ try {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   rootFiles.forEach((entry) => {
-    photos.push({ url: `/assets/portfolio/${entry.name}`, album: null });
+    photos.push({ url: `${base}assets/portfolio/${entry.name}`, album: null });
   });
 
 } catch {

@@ -10,6 +10,8 @@ const {
   title = 'Elektricien TVD Elektro te Denderhoutem | Elektriciteitswerken - Verlichting - Domotica - Ventilatie - Zonnepanelen - Audio - Beveiliging',
   description = 'Naast de algemene elektriciteitswerken, kunt u bij ons ook terecht voor verlichting, domotica, zonnepanelen en beveiliging van uw woning of bedrijfspand.',
 } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <!doctype html>
@@ -22,16 +24,16 @@ const {
     <title>{title}</title>
 
     <!-- Favicons -->
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-180x180.png" />
-    <link rel="manifest" href="/assets/manifest.json" />
+    <link rel="icon" type="image/x-icon" href={`${base}assets/favicon.ico`} />
+    <link rel="icon" type="image/png" sizes="16x16" href={`${base}assets/favicon-16x16.png`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${base}assets/favicon-32x32.png`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}assets/apple-touch-icon-180x180.png`} />
+    <link rel="manifest" href={`${base}assets/manifest.json`} />
 
     <!-- Font preloads -->
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-v3-latin-regular.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter-v3-latin-600.woff2" crossorigin />
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/poppins-v15-latin-600.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={`${base}assets/fonts/inter-v3-latin-regular.woff2`} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={`${base}assets/fonts/inter-v3-latin-600.woff2`} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={`${base}assets/fonts/poppins-v15-latin-600.woff2`} crossorigin />
 
     <!-- Analytics -->
     <script
@@ -43,6 +45,105 @@ const {
       data-host="https://microanalytics.io"
     ></script>
   </head>
+
+<style is:global>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/inter-v3-latin-regular.woff2') format('woff2'),
+       url('/assets/fonts/inter-v3-latin-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/inter-v3-latin-500.woff2') format('woff2'),
+       url('/assets/fonts/inter-v3-latin-500.woff') format('woff');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/inter-v3-latin-600.woff2') format('woff2'),
+       url('/assets/fonts/inter-v3-latin-600.woff') format('woff');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/inter-v3-latin-700.woff2') format('woff2'),
+       url('/assets/fonts/inter-v3-latin-700.woff') format('woff');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/assets/fonts/inter-v3-latin-900.woff2') format('woff2'),
+       url('/assets/fonts/inter-v3-latin-900.woff') format('woff');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/poppins-v15-latin-600.woff2') format('woff2'),
+       url('/assets/fonts/poppins-v15-latin-600.woff') format('woff');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/poppins-v15-latin-600italic.woff2') format('woff2'),
+       url('/assets/fonts/poppins-v15-latin-600italic.woff') format('woff');
+}
+@font-face {
+  font-family: 'Font Awesome 5 Pro';
+  font-style: normal;
+  font-weight: 300;
+  font-display: block;
+  src: url('/assets/fonts/fa-light-300.woff2') format('woff2'),
+       url('/assets/fonts/fa-light-300.woff') format('woff');
+}
+@font-face {
+  font-family: 'Font Awesome 5 Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/assets/fonts/fa-regular-400.woff2') format('woff2'),
+       url('/assets/fonts/fa-regular-400.woff') format('woff');
+}
+@font-face {
+  font-family: 'Font Awesome 5 Pro';
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url('/assets/fonts/fa-solid-900.woff2') format('woff2'),
+       url('/assets/fonts/fa-solid-900.woff') format('woff');
+}
+@font-face {
+  font-family: 'Font Awesome 5 Brands';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/assets/fonts/fa-brands-400.woff2') format('woff2'),
+       url('/assets/fonts/fa-brands-400.woff') format('woff');
+}
+@font-face {
+  font-family: 'Font Awesome 5 Duotone';
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url('/assets/fonts/fa-duotone-900.woff2') format('woff2'),
+       url('/assets/fonts/fa-duotone-900.woff') format('woff');
+}
+</style>
   <body>
     <slot />
   </body>
