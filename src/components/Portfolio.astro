@@ -27,7 +27,7 @@ try {
     if (files.length > 0) {
       albums.push(entry.name);
       files.forEach((file) => {
-        photos.push({ url: `${base}assets/portfolio/${entry.name}/${file}`, album: entry.name });
+        photos.push({ url: `${base}/assets/portfolio/${entry.name}/${file}`, album: entry.name });
       });
     }
   }
@@ -38,7 +38,7 @@ try {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   rootFiles.forEach((entry) => {
-    photos.push({ url: `${base}assets/portfolio/${entry.name}`, album: null });
+    photos.push({ url: `${base}/assets/portfolio/${entry.name}`, album: null });
   });
 
 } catch {
